@@ -4,7 +4,7 @@ import numpy as np
 import shutil
 from tqdm import tqdm
 
-root = '/ssd_1t/derron/WiderFace'
+root = '/data/junyanli/widerface'
 
 def xywh2xxyy(box):
 	x1 = box[0]
@@ -50,8 +50,8 @@ if __name__ == '__main__':
 	datas = wider2face('val')
 	for idx, data in enumerate(datas.keys()):
 		pict_name = os.path.basename(data)
-		out_img = 'widerface/val/images/{}'.format(pict_name)
-		out_txt = 'widerface/val/labels/{}.txt'.format(os.path.splitext(pict_name)[0])
+		out_img = '/dev/shm/widerface/val/images/{}'.format(pict_name)
+		out_txt = '/dev/shm/widerface/val/labels/{}.txt'.format(os.path.splitext(pict_name)[0])
 		shutil.copyfile(data, out_img)
 		labels = datas[data]
 		f = open(out_txt, 'w')
