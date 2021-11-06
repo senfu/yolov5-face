@@ -48,7 +48,7 @@ def wider2face(phase='val', ignore_small=0):
 
 if __name__ == '__main__':
 	datas = wider2face('val')
-	for idx, data in enumerate(datas.keys()):
+	for idx, data in enumerate(tqdm(datas.keys())):
 		pict_name = os.path.basename(data)
 		out_img = '/dev/shm/widerface/val/images/{}'.format(pict_name)
 		out_txt = '/dev/shm/widerface/val/labels/{}.txt'.format(os.path.splitext(pict_name)[0])

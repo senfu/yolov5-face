@@ -5,6 +5,7 @@ import torch
 import torch.utils.data as data
 import cv2
 import numpy as np
+from tqdm import trange, tqdm
 
 class WiderFaceDetection(data.Dataset):
     def __init__(self, txt_path, preproc=None):
@@ -102,8 +103,8 @@ def detection_collate(batch):
 
 save_path = '/dev/shm/widerface/train'
 aa=WiderFaceDetection("/data/junyanli/widerface/train/label.txt")
-for i in range(len(aa.imgs_path)):
-    print(i, aa.imgs_path[i])
+for i in trange(len(aa.imgs_path)):
+    tqdm.write(f"{i} {aa.imgs_path[i]}")
     img = cv2.imread(aa.imgs_path[i])
     base_img = os.path.basename(aa.imgs_path[i])
     base_txt = os.path.basename(aa.imgs_path[i])[:-4] +".txt"
