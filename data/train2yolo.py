@@ -102,6 +102,8 @@ def detection_collate(batch):
     return (torch.stack(imgs, 0), targets)
 
 save_path = '/dev/shm/widerface/train'
+os.makedirs(save_path, exist_ok=True)
+
 aa=WiderFaceDetection("/data/junyanli/widerface/train/label.txt")
 for i in trange(len(aa.imgs_path)):
     tqdm.write(f"{i} {aa.imgs_path[i]}")

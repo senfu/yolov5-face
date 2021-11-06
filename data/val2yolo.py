@@ -48,6 +48,10 @@ def wider2face(phase='val', ignore_small=0):
 
 if __name__ == '__main__':
 	datas = wider2face('val')
+ 
+	os.makedirs("/dev/shm/widerface/val/images/", exist_ok=True)
+	os.makedirs("/dev/shm/widerface/val/labels/", exist_ok=True)
+ 
 	for idx, data in enumerate(tqdm(datas.keys())):
 		pict_name = os.path.basename(data)
 		out_img = '/dev/shm/widerface/val/images/{}'.format(pict_name)
