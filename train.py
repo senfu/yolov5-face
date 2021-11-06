@@ -8,7 +8,6 @@ from pathlib import Path
 from threading import Thread
 from warnings import warn
 
-import numpy as np
 import torch.distributed as dist
 import torch.nn as nn
 import torch.nn.functional as F
@@ -33,6 +32,8 @@ from utils.google_utils import attempt_download
 from utils.loss import compute_loss
 from utils.plots import plot_images, plot_labels, plot_results, plot_evolution
 from utils.torch_utils import ModelEMA, select_device, intersect_dicts, torch_distributed_zero_first
+import numpy as np
+
 
 logger = logging.getLogger(__name__)
 
