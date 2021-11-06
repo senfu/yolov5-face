@@ -5,8 +5,10 @@
 
 python3 - <<EOF
 from utils.google_utils import attempt_download
+import os
 
 for x in ['s', 'm', 'l', 'x']:
     attempt_download(f'yolov5{x}.pt')
+    os.system("mv yolov5*.pt weights/")
 
 EOF
