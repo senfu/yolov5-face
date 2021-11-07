@@ -121,12 +121,12 @@ if __name__ == '__main__':
     parser.add_argument('--augment', action='store_true', help='augmented inference')
     parser.add_argument('--update', action='store_true', help='update all models')
     parser.add_argument('--classes', nargs='+', type=int, help='filter by class: --class 0, or --class 0 2 3')
-    parser.add_argument('--project', default='runs/detect', help='save results to project/name')
+    parser.add_argument('--project', default='runs/train', help='save results to project/name')
     parser.add_argument('--name', default='exp', help='save results to project/name')
     parser.add_argument('--exist-ok', action='store_true', help='existing project/name ok, do not increment')
     parser.add_argument('--save_folder', default='./widerface_evaluate/widerface_txt/', type=str, help='Dir to save txt results')
-    parser.add_argument('--dataset_folder', default='../WiderFace/val/images/', type=str, help='dataset path')
-    parser.add_argument('--folder_pict', default='/yolov5-face/data/widerface/val/wider_val.txt', type=str, help='folder_pict')
+    parser.add_argument('--dataset_folder', default='/dev/shm/widerface/val/images/', type=str, help='dataset path')
+    parser.add_argument('--folder_pict', default='/data/junyanli/widerface/val/label.txt', type=str, help='folder_pict')
     opt = parser.parse_args()
     print(opt)
 
@@ -135,8 +135,9 @@ if __name__ == '__main__':
     with open(opt.folder_pict, 'r') as f:
         lines = f.readlines()
         for line in lines:
-            line = line.strip().split('/')
-            pict_folder[line[-1]] = line[-2]
+            if line.startswith("#"):
+                line = line.strip().split()[-1].split("/")
+                pict_folder[line[-1]] = line[-2]
 
     # Load model
     device = select_device(opt.device)
